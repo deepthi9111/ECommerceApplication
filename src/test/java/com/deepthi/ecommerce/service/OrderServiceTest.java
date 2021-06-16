@@ -32,7 +32,7 @@ class OrderServiceTest
 	@InjectMocks
 	OrderService orderService;
 	
-	/*@Test
+	@Test
 	void testAddOrder() 
 	{
 		User user=new User();
@@ -58,7 +58,7 @@ class OrderServiceTest
 		Order addOrder = orderService.addOrder(product,user);
 		
 		assertTrue(addOrder.getOrderId()==order.getOrderId());
-	}*/
+	}
 
 	@Test
 	void testGetAllOrdersById() 

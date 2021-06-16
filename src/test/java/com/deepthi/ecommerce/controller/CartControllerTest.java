@@ -21,10 +21,14 @@ import org.springframework.http.ResponseEntity;
 
 import com.deepthi.ecommerce.entity.Cart;
 import com.deepthi.ecommerce.entity.Product;
+import com.deepthi.ecommerce.entity.User;
+import com.deepthi.ecommerce.exception.AccessRestrictedException;
+import com.deepthi.ecommerce.exception.OrderCannotBePlacedException;
 import com.deepthi.ecommerce.exception.ProductAlreadyAddedException;
 import com.deepthi.ecommerce.exception.ProductNotInCartException;
 import com.deepthi.ecommerce.service.CartService;
 import com.deepthi.ecommerce.service.ProductService;
+import com.deepthi.ecommerce.service.UserService;
 
 @SpringBootTest
 @TestMethodOrder(OrderAnnotation.class)
@@ -37,19 +41,32 @@ class CartControllerTest
 	@Mock
 	ProductService productService;
 	
+	@Mock
+	UserService userService;
+	
 	@InjectMocks
 	CartController cartController;
 	
 	@Test
 	@DisplayName("Add To Cart : Positive Scenario")
-	void testAddProductToCart() throws ProductAlreadyAddedException 
+	void testAddProductToCart() throws ProductAlreadyAddedException, AccessRestrictedException 
 	{
+		User user=new User();
+		user.setUserId(1L);
+		user.setName("Avula Mounika Deepthi");
+		user.setEmail("amouni1998@gmail.com");
+		user.setPassword("mouni@1234");
+		user.setMobile("7075725533");
+		user.setAddress("Kavali");
+		
 		List<Cart> cartList=new ArrayList<>();
 		
 		Cart cart=new Cart(1L,1L,1L);
 		
+		when(userService.getUserById(user.getUserId())).thenReturn(Optional.of(user));
 		when(cartService.getAllByUserId(1L)).thenReturn(cartList);
 		when(cartService.addToCart(cart)).thenReturn(cart);
+		
 		
 		ResponseEntity<String> addProductToCart = cartController.addProductToCart(1L, 1L);
 		
@@ -58,14 +75,50 @@ class CartControllerTest
 	
 	@Test
 	@DisplayName("Add To Cart : Negative Scenario")
-	void testAddProductToCart2() throws ProductAlreadyAddedException 
+	void testAddProductToCart2() 
 	{
 		List<Cart> cartList=new ArrayList<>();
+		
+		User user=new User();
+		user.setUserId(1L);
+		user.setName("ECommerce");
+		user.setEmail("admin@ecommerce.co.in");
+		user.setPassword("admin@1234");
+		user.setMobile("7816541901");
+		user.setAddress("Kavali");
 		
 		Cart cart=new Cart(1L,1L,1L);
 		
 		cartList.add(cart);
 		
+		when(userService.getUserById(user.getUserId())).thenReturn(Optional.of(user));
+		when(cartService.getAllByUserId(1L)).thenReturn(cartList);
+		when(cartService.addToCart(cart)).thenReturn(cart);
+		
+		AccessRestrictedException e = assertThrows(AccessRestrictedException.class, ()->cartController.addProductToCart(1L, 1L));
+	
+		assertEquals("Admin cannot add the product into the cart", e.getMessage());
+	}
+
+	@Test
+	@DisplayName("Add To Cart : Negative Scenario2")
+	void testAddProductToCart3()  
+	{
+		List<Cart> cartList=new ArrayList<>();
+		
+		User user=new User();
+		user.setUserId(1L);
+		user.setName("Avula Mounika Deepthi");
+		user.setEmail("amouni1998@gmail.com");
+		user.setPassword("mouni@1234");
+		user.setMobile("7075725533");
+		user.setAddress("Kavali");
+		
+		Cart cart=new Cart(1L,1L,1L);
+		
+		cartList.add(cart);
+		
+		when(userService.getUserById(user.getUserId())).thenReturn(Optional.of(user));
 		when(cartService.getAllByUserId(1L)).thenReturn(cartList);
 		when(cartService.addToCart(cart)).thenReturn(cart);
 		
@@ -73,7 +126,7 @@ class CartControllerTest
 	
 		assertEquals("Product has already added into the cart", e.getMessage());
 	}
-
+	
 	@Test
 	@DisplayName("Delete From Cart : Positive Scenario")
 	void testDeleteProductFromCart() throws ProductNotInCartException 

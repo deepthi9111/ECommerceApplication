@@ -33,7 +33,7 @@ public class OrderService
 		order.setProduct(product);
 		order.setUser(user);
 		order.setOrderedTime(time);
-		order.setExpected(time.plusDays(7));
+		order.setExpected(time.plusHours(2));
 		
 		return orderRespository.save(order);
 		

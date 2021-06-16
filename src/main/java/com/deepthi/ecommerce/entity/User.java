@@ -2,6 +2,7 @@ package com.deepthi.ecommerce.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -39,7 +40,7 @@ public class User
 	@Size(min=10, max = 10,message = "Mobile number should be of length 10")
 	private String mobile;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Account account;
 	
 	@OneToMany

@@ -14,14 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.deepthi.ecommerce.entity.Cart;
 import com.deepthi.ecommerce.entity.Product;
+import com.deepthi.ecommerce.entity.User;
+import com.deepthi.ecommerce.exception.AccessRestrictedException;
 import com.deepthi.ecommerce.exception.ProductAlreadyAddedException;
 import com.deepthi.ecommerce.exception.ProductNotInCartException;
 import com.deepthi.ecommerce.service.CartService;
 import com.deepthi.ecommerce.service.ProductService;
+import com.deepthi.ecommerce.service.UserService;
 
 @RestController
 public class CartController 
 {
+	@Autowired
+	UserService userService;
+	
 	@Autowired
 	CartService cartService;
 	
@@ -29,10 +35,21 @@ public class CartController
 	ProductService productService;
 	
 	@PostMapping("/users/{id}/products/{pid}/carts")
-	public ResponseEntity<String> addProductToCart(@PathVariable Long id, @PathVariable Long pid) throws ProductAlreadyAddedException
+	public ResponseEntity<String> addProductToCart(@PathVariable Long id, @PathVariable Long pid) throws ProductAlreadyAddedException, AccessRestrictedException
 	{
 		StringBuilder message=new StringBuilder();
 		
+		Optional<User> userById = userService.getUserById(id);
+		User user=new User();
+		if(userById.isPresent())
+		{
+			user=userById.get();
+		}
+		
+		if(user.getEmail().equals("admin@ecommerce.co.in"))
+		{
+			throw new AccessRestrictedException("Admin cannot add the product into the cart");
+		}
 		Cart cart=new Cart();
 		cart.setPid(pid);
 		cart.setUserid(id);
