@@ -23,7 +23,6 @@ import com.deepthi.ecommerce.entity.Cart;
 import com.deepthi.ecommerce.entity.Product;
 import com.deepthi.ecommerce.entity.User;
 import com.deepthi.ecommerce.exception.AccessRestrictedException;
-import com.deepthi.ecommerce.exception.OrderCannotBePlacedException;
 import com.deepthi.ecommerce.exception.ProductAlreadyAddedException;
 import com.deepthi.ecommerce.exception.ProductNotInCartException;
 import com.deepthi.ecommerce.service.CartService;
@@ -53,11 +52,11 @@ class CartControllerTest
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		List<Cart> cartList=new ArrayList<>();
 		
@@ -85,7 +84,7 @@ class CartControllerTest
 		user.setEmail("admin@ecommerce.co.in");
 		user.setPassword("admin@1234");
 		user.setMobile("7816541901");
-		user.setAddress("Kavali");
+		user.setAddress("Bangalore");
 		
 		Cart cart=new Cart(1L,1L,1L);
 		
@@ -108,11 +107,11 @@ class CartControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Cart cart=new Cart(1L,1L,1L);
 		

@@ -71,11 +71,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		user.setAccount(sender);
 		
 		List<Cart> cartList=new ArrayList<>();
@@ -100,11 +100,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		user.setAccount(sender);
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,0,"In stock");
@@ -134,11 +134,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		user.setAccount(sender);
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In stock");
@@ -171,11 +171,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		user.setAccount(sender);
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In stock");
@@ -215,11 +215,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In stock");
 		
@@ -242,11 +242,11 @@ class OrderControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		when(orderService.getAllOrdersById(user.getUserId())).thenReturn(ordersList);
 		

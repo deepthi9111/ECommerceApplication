@@ -105,11 +105,13 @@ public class ProductController
 			savedProduct.setPrice(product.getPrice());
 			savedProduct.setStatus(product.getStatus());
 			
+			log.info("Saving the product into the database");
 			message.append("product has been edited successfully");
 			productService.saveProduct(savedProduct);
 		}
 		else
 		{
+			log.warn("No one can edit the product from database other than admin");
 			throw new AccessRestrictedException("You don't have privilege to access the resources");
 		}
 		return new ResponseEntity<>(message.toString(),HttpStatus.OK);
@@ -121,8 +123,10 @@ public class ProductController
 	{
 		StringBuilder message=new StringBuilder();
 		
+		log.info("Getting all the products by category");
 		List<Product> allProductsByCategory = productService.getAllProductsByCategory(category);
 		
+		log.info("Checking whether the products of a category are available or not");
 		if(allProductsByCategory.isEmpty())
 		{
 			message.append("No products");
@@ -131,6 +135,7 @@ public class ProductController
 		{
 			int sno=0;
 			
+			log.info("Showing all the products of a category");
 			for(Product product:allProductsByCategory)
 			{
 				sno++;

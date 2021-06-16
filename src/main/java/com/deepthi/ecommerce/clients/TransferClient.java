@@ -20,6 +20,4 @@ public interface TransferClient
 	@GetMapping("/customers/{acno}")
 	public ResponseEntity<String> checkAccount(@PathVariable Long acno);
 	
-	@GetMapping("/funds/api")
-	public ResponseEntity<String> sample();
 }

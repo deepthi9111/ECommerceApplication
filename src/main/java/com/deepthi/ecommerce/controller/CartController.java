@@ -3,6 +3,8 @@ package com.deepthi.ecommerce.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +27,8 @@ import com.deepthi.ecommerce.service.UserService;
 @RestController
 public class CartController 
 {
+	static Logger log = LoggerFactory.getLogger(CartController.class.getName());
+	
 	@Autowired
 	UserService userService;
 	
@@ -39,6 +43,7 @@ public class CartController
 	{
 		StringBuilder message=new StringBuilder();
 		
+		log.info("Getting the user from database using user id");
 		Optional<User> userById = userService.getUserById(id);
 		User user=new User();
 		if(userById.isPresent())
@@ -46,8 +51,10 @@ public class CartController
 			user=userById.get();
 		}
 		
+		log.info("Checking whether the user is admin or not");
 		if(user.getEmail().equals("admin@ecommerce.co.in"))
 		{
+			log.info("Throwing an exception as the user is admin");
 			throw new AccessRestrictedException("Admin cannot add the product into the cart");
 		}
 		Cart cart=new Cart();
@@ -60,9 +67,11 @@ public class CartController
 		{
 			if(c.getPid()==pid)
 			{
+				log.warn("Product already added into the cart");
 				throw new ProductAlreadyAddedException("Product has already added into the cart");
 			}
 		}
+		log.info("Product is added into the cart");
 		cartService.addToCart(cart);
 		message.append("Product has been added to the cart successfully");
 		
@@ -74,6 +83,7 @@ public class CartController
 	{
 		StringBuilder message=new StringBuilder();
 		
+		log.info("Getting all the products from cart belongs to the user");
 		List<Cart> allByUserId = cartService.getAllByUserId(id);
 		
 		int notEqual=0;
@@ -85,13 +95,16 @@ public class CartController
 			}
 			else
 			{
+				log.info("Deleting the product from the cart");
 				cartService.deleteProductFromCart(c);
 				message.append("Product has been deleted from cart");
 			}
 		}
 		
+		
 		if(notEqual==allByUserId.size())
 		{
+			log.warn("can't delete the product as the product is not in the cart");
 			throw new ProductNotInCartException("The product you wanna delete is not in the cart");
 		}
 		
@@ -103,8 +116,10 @@ public class CartController
 	{
 		StringBuilder message=new StringBuilder();
 		
+		log.info("Getting all the products from cart belongs to the user");
 		List<Cart> allByUserId = cartService.getAllByUserId(id);
 		
+		log.info("Checking whether the cart is empty or not");
 		if(allByUserId.isEmpty())
 		{
 			message.append("Your cart is empty");
@@ -116,6 +131,7 @@ public class CartController
 			{
 				sno++;
 				message.append(sno+". ");
+				log.info("Getting the product using product id");
 				Optional<Product> productById = productService.getProductById(c.getPid());
 			
 				if(productById.isPresent())

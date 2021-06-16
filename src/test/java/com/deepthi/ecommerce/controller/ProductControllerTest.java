@@ -52,7 +52,13 @@ class ProductControllerTest
 		user.setMobile("1800267851");
 		user.setAddress("Bangalore Headquarters");
 		
-		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In Stock");
+		Product product=new Product();
+		product.setProductId(1L);
+		product.setName("Harvard");
+		product.setCategory("Sweatshirt");
+		product.setPrice(800.0);
+		product.setCount(10);
+		product.setStatus("In Stock");
 		
 		when(userService.getUserById(user.getUserId())).thenReturn(Optional.of(user));
 		when(productService.getProductByName(product.getName())).thenReturn(null);
@@ -92,11 +98,11 @@ class ProductControllerTest
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In Stock");
 		
@@ -137,11 +143,11 @@ class ProductControllerTest
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In Stock");
 		

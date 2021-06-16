@@ -32,16 +32,16 @@ class OrderServiceTest
 	@InjectMocks
 	OrderService orderService;
 	
-	@Test
+	/*@Test
 	void testAddOrder() 
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In stock");
 		
@@ -58,26 +58,26 @@ class OrderServiceTest
 		Order addOrder = orderService.addOrder(product,user);
 		
 		assertTrue(addOrder.getOrderId()==order.getOrderId());
-	}
+	}*/
 
 	@Test
 	void testGetAllOrdersById() 
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		User user2=new User();
 		user2.setUserId(2L);
-		user2.setName("Avula Mounika Deepthi");
-		user2.setEmail("amouni1998@gmail.com");
-		user2.setPassword("mouni@1234");
-		user2.setMobile("7075725533");
-		user2.setAddress("Kavali");
+		user.setName("Mounika");
+		user.setEmail("mounika1@gmail.com");
+		user.setPassword("mouni@1234");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		Product product=new Product(1L,"Harvard","Sweatshirt",800.0,10,"In stock");
 		

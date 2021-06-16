@@ -59,9 +59,4 @@ public class Cart
 		this.userid = userid;
 	}
 
-	@Override
-	public String toString() {
-		return "Cart [cartId=" + cartId + ", pid=" + pid + ", userid=" + userid + "]";
-	}
-
 }

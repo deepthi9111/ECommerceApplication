@@ -106,14 +106,6 @@ public class User
 		this.mobile = mobile;
 	}
 
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
 	public String getAddress() {
 		return address;
 	}

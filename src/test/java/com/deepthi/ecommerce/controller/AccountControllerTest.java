@@ -5,8 +5,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import javax.security.auth.login.AccountNotFoundException;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -22,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import com.deepthi.ecommerce.clients.TransferClient;
 import com.deepthi.ecommerce.entity.Account;
 import com.deepthi.ecommerce.entity.User;
+import com.deepthi.ecommerce.exception.AccountNotFoundException;
 import com.deepthi.ecommerce.service.UserService;
 
 @SpringBootTest
@@ -42,19 +41,15 @@ class AccountControllerTest
 	@DisplayName("Add Account : Positive Scenario")
 	void testAddAccount() throws AccountNotFoundException 
 	{
-		Account account=new Account();
-		account.setAcno(1673190501L);
-		account.setBank("HDFC");
-		account.setBranch("Bangalore");
-		account.setIfsc("HDFC0000549");
+		Account account=new Account(1673190501L,"HDFC0000549","Bangalore","HDFC");
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("1234567890");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		ResponseEntity<String> response=new ResponseEntity<>(HttpStatus.OK);
 		
@@ -80,11 +75,11 @@ class AccountControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("1234567890");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		ResponseEntity<String> response=new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		

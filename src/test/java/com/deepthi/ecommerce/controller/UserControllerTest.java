@@ -39,13 +39,7 @@ class UserControllerTest
 	@DisplayName("Registration : Positive Scenario")
 	void testUserRegistration() throws DuplicateEntryException 
 	{
-		User user=new User();
-		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
-		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		User user=new User(1L,"Mounika","mounika@gmail.com","mouni@1234","8985478597","Hyderabad");
 		
 		when(userService.getUserByEmail(user.getEmail())).thenReturn(null);
 		when(userService.addUser(user)).thenReturn(user);
@@ -62,11 +56,11 @@ class UserControllerTest
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("amouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		when(userService.getUserByEmail(user.getEmail())).thenReturn(user);
 		
@@ -81,11 +75,11 @@ class UserControllerTest
 	{
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("Aamouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		UserLogin login=new UserLogin("amouni1998@gmail.com","mouni@1234");
 		
@@ -100,7 +94,9 @@ class UserControllerTest
 	@DisplayName("User Login : Negative Scenario")
 	void testUserLogin2()
 	{
-		UserLogin login=new UserLogin("amouni1998@gmail.com","mouni@1234");
+		UserLogin login=new UserLogin();
+		login.setEmail("mounika@gmail.com");
+		login.setPassword("mouni@1234");
 		
 		when(userService.getUserByEmail(login.getEmail())).thenReturn(null);
 		
@@ -116,11 +112,11 @@ class UserControllerTest
 		
 		User user=new User();
 		user.setUserId(1L);
-		user.setName("Avula Mounika Deepthi");
-		user.setEmail("Aamouni1998@gmail.com");
+		user.setName("Mounika");
+		user.setEmail("mounika@gmail.com");
 		user.setPassword("mouni@1234");
-		user.setMobile("7075725533");
-		user.setAddress("Kavali");
+		user.setMobile("8985478597");
+		user.setAddress("Hyderabad");
 		
 		when(userService.getUserById(user.getUserId())).thenReturn(Optional.of(user));
 		when(userService.updateUser(user)).thenReturn(user);
