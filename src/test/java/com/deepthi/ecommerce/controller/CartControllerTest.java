@@ -2,6 +2,7 @@ package com.deepthi.ecommerce.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ class CartControllerTest
 		ResponseEntity<String> addProductToCart = cartController.addProductToCart(1L, 1L);
 		
 		assertTrue(addProductToCart.getStatusCodeValue()==200);
+		
 	}
 	
 	@Test
